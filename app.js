@@ -41,7 +41,11 @@ async function getIdeaList () {
       await getIdeaList()
     }
   } else {
-    writeFile('./log/error.log', '读取失败')
+    writeFile({
+      file: './log/error.log',
+      data: `获取灵感列表-${JSON.stringify(STATE.fetchListConfig)}-${new Date().toLocaleString()}-${result.msg || '异常情况,需要进一步调试!'}`
+    })
+    console.error('获取数据异常！请查看log/error.log')
   }
 }
 // 添加评论
